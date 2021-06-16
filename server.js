@@ -12,7 +12,7 @@ const catagoryRoute = require('./router/catagory')
 const tagRoute = require('./router/tag')
 const formRoute = require('./router/form')
 const app = express();
-mongoose.connect(`mongodb+srv://yoni_quest:09480768a@cluster0.hmaxf.mongodb.net/seoblog?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+mongoose.connect(process.env.mongoConnection, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
     .then(() => {
         console.log('connected');
     }
