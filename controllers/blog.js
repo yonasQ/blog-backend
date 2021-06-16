@@ -99,7 +99,7 @@ exports.list = (req, res) => {
         .exec((err, data) => {
             if (err) {
                 return res.status(400).json({
-                    err: errorHandler(err)
+                    err: err
                 })
             }
             res.json({ blogs: data })
