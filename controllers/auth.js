@@ -10,7 +10,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 exports.preSignup =async (req, res) => {
     const { name, email, password } = req.body
-     User.findOne({ email: req.body.email }).exec((err, user) => {
+      await User.findOne({ email: req.body.email }).exec((err, user) => {
         if (user) {
             return res.status(400).json({ err: "Email already been taken" })
         }
@@ -28,7 +28,7 @@ exports.preSignup =async (req, res) => {
       `
         }
 
-        await sgMail.send(emailData)
+         sgMail.send(emailData)
             .then(() => {
                 return res.json({
                     message: `Account activation link has been sent to ${email}. Link expires in 10min. `
