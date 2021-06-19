@@ -8,9 +8,10 @@ const _ = require('lodash')
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
-exports.preSignup =async (req, res) => {
+exports.preSignup = (req, res) => {
     const { name, email, password } = req.body
-      await User.findOne({ email: req.body.email }).exec((err, user) => {
+    console.log(req.body)
+       User.findOne({ email: req.body.email }).exec((err, user) => {
         if (user) {
             return res.status(400).json({ err: "Email already been taken" })
         }
@@ -33,7 +34,21 @@ exports.preSignup =async (req, res) => {
                 return res.json({
                     message: `Account activation link has been sent to ${email}. Link expires in 10min. `
                 })
-            });
+            })
+             .catch(error => {
+
+                 /* log friendly error */
+                 console.error(error.toString());
+
+                 /* extract error message */
+                 const { message, code, response } = error;
+
+                 /* extract response message */
+                 const { headers, body } = response;
+                 return res.status(401).json({
+                     err:{ error,response,message}
+                 })
+             });
     })
 }
 
