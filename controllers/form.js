@@ -14,7 +14,7 @@ exports.contactForm = (req, res) => {
       <p>Sender message: ${message}</p>
       <hr/>
       <p>This email may contain sensetive information:</p>
-      <p>http://localhost:3000</p>
+      <p>${process.env.CLIENT_URL}</p>
       `
     }
     sgMail.send(emailData)
@@ -46,7 +46,7 @@ exports.contactBlogAuthorForm = (req, res) => {
       <p>Message: ${message}</p>
       <hr/>
       <p>This email may contain sensetive information:</p>
-      <p>http://localhost:3000</p>
+      <p>${process.env.CLIENT_URL}</p>
       `
     }
     sgMail.send(emailData)

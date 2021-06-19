@@ -24,7 +24,7 @@ exports.preSignup = (req, res) => {
       <p>${process.env.CLIENT_URL}/auth/account/activate/${token}</p>
       <hr/>
       <p>This email may contain sensetive information:</p>
-      <p>http://localhost:3000</p>
+      <p>${process.env.CLIENT_URL}</p>
       `
         }
 
@@ -172,7 +172,7 @@ exports.forgotPassword = ((req, res) => {
       <p>${process.env.CLIENT_URL}/auth/password/reset/${token}</p>
       <hr/>
       <p>This email may contain sensetive information:</p>
-      <p>http://localhost:3000</p>
+      <p>${process.env.CLIENT_URL}</p>
       `
         }
         return user.updateOne({ resetPasswordLink: token },
