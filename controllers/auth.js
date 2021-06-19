@@ -36,28 +36,7 @@ exports.preSignup = (req, res) => {
             });
     })
 }
-// exports.signup = (req, res) => {
-//     // User.findOne({ email: req.body.email }).exec((err, user) => {
-//     //     if (user) {
-//     //         return res.status(400).json({ err: "Email already been taken" })
-//     //     }
-//     const { name, email, password } = req.body;
-//     let username = shortid.generate();
-//     let profile = `${process.env.CLIENT_URL}/profile/${username}`;
-//     const newUser = new User({ name, email, username, password, profile })
-//     newUser.save((err, success) => {
-//         if (err) {
-//             return res.status(400).json({
-//                 err: errorHandler(err)
-//             })
-//         }
-//         res.status(200).json({
-//             message: "Signup success!"
-//         })
-//     })
-//     // })
 
-// }
 
 exports.signup = (req, res) => {
     const { activationLink } = req.body
